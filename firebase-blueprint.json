@@ -1,0 +1,71 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role and origin class",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "nama": { "type": "string", "maxLength": 128 },
+        "role": { "type": "string", "enum": ["admin", "petugas"] },
+        "kelasAsal": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "email", "nama", "role", "createdAt"]
+    },
+    "SchoolClass": {
+      "title": "SchoolClass",
+      "description": "Class in SMA Negeri 11 Maros",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 64 },
+        "tingkat": { "type": "string", "enum": ["X", "XI", "XII"] },
+        "waliKelas": { "type": "string", "maxLength": 128 },
+        "jumlahSiswa": { "type": "number" }
+      },
+      "required": ["id", "name", "tingkat"]
+    },
+    "WasteInput": {
+      "title": "WasteInput",
+      "description": "Daily waste record input by a Sispaling officer",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "kelasId": { "type": "string", "maxLength": 128 },
+        "kelasName": { "type": "string", "maxLength": 64 },
+        "petugasId": { "type": "string", "maxLength": 128 },
+        "petugasName": { "type": "string", "maxLength": 128 },
+        "petugasKelasAsal": { "type": "string", "maxLength": 64 },
+        "tanggal": { "type": "string", "maxLength": 10 },
+        "organik": { "type": "number" },
+        "anorganik": { "type": "number" },
+        "b3": { "type": "number" },
+        "total": { "type": "number" },
+        "catatan": { "type": "string", "maxLength": 500 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["id", "kelasId", "kelasName", "petugasId", "petugasName", "tanggal", "organik", "anorganik", "b3", "total", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles for officers and admins"
+    },
+    "/classes/{classId}": {
+      "schema": "SchoolClass",
+      "description": "Daftar kelas SMA Negeri 11 Maros"
+    },
+    "/inputs/{inputId}": {
+      "schema": "WasteInput",
+      "description": "Catatan sampah harian kelas"
+    },
+    "/admins/{adminId}": {
+      "schema": "User",
+      "description": "Admin identity marker"
+    }
+  }
+}

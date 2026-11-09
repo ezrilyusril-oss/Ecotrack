@@ -1,0 +1,101 @@
+{
+  "users": [
+    {
+      "id": "u-admin",
+      "username": "sispaling26",
+      "passwordHash": "8057f08784581b8c79d36a470997649452fef353de0f710346c3fb0d6241f8f7447146f1108f489f9366d846ab7b0e6065c5ce4c889560b7b518af31c467a325",
+      "salt": "a5fca60221f31137bbffd65f247c2c94",
+      "nama": "Pembina Sispaling / Admin",
+      "role": "admin",
+      "createdAt": "2026-11-09T09:31:19.363Z"
+    }
+  ],
+  "classes": [
+    {
+      "id": "c-x1",
+      "name": "X-1",
+      "tingkat": "X",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-x2",
+      "name": "X-2",
+      "tingkat": "X",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-x3",
+      "name": "X-3",
+      "tingkat": "X",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-x4",
+      "name": "X-4",
+      "tingkat": "X",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-x5",
+      "name": "X-5",
+      "tingkat": "X",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-xi-mipa1",
+      "name": "XI-MIPA 1",
+      "tingkat": "XI",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-xi-mipa2",
+      "name": "XI-MIPA 2",
+      "tingkat": "XI",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-xi-ips1",
+      "name": "XI-IPS 1",
+      "tingkat": "XI",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-xi-ips2",
+      "name": "XI-IPS 2",
+      "tingkat": "XI",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-xii-mipa1",
+      "name": "XII-MIPA 1",
+      "tingkat": "XII",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-xii-mipa2",
+      "name": "XII-MIPA 2",
+      "tingkat": "XII",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-xii-ips1",
+      "name": "XII-IPS 1",
+      "tingkat": "XII",
+      "jumlahSiswa": 36
+    },
+    {
+      "id": "c-xii-ips2",
+      "name": "XII-IPS 2",
+      "tingkat": "XII",
+      "jumlahSiswa": 36
+    }
+  ],
+  "inputs": [],
+  "settings": {
+    "adminUsername": "sispaling26",
+    "appName": "EcoTrack Sispaling",
+    "schoolName": "SMA Negeri 11 Maros",
+    "semester": "Ganjil",
+    "tahunAjaran": "2026/2027"
+  }
+}

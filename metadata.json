@@ -1,0 +1,6 @@
+{
+  "name": "EcoTrack Sispaling - SMA Negeri 11 Maros",
+  "description": "Aplikasi pencatatan dan monitoring sampah harian kelas di SMA Negeri 11 Maros oleh tim Sispaling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

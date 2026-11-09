@@ -1,0 +1,80 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'sispaling26@sman11maros.sch.id' ||
+        request.auth.token.email == 'yusrilezril@gmail.com' ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin')
+      );
+    }
+
+    // --- COLLECTIONS ---
+
+    // 1. Classes: Read is public (needed for dashboard, guest, rankings, forms). Write and Delete are Admin only.
+    match /classes/{classId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // 2. Users Profiles
+    match /users/{userId} {
+      allow read: if true;
+      allow create, update: if isSignedIn() && (request.auth.uid == userId || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    // 3. Waste Inputs
+    match /inputs/{inputId} {
+      // Public read so all roles (including Tamu) can view dashboard & rankings
+      allow read: if true;
+
+      // Create: Authenticated officer or Admin
+      allow create: if isSignedIn() && (isAdmin() || incoming().petugasId == request.auth.uid);
+
+      // Update: Admin anytime OR Petugas
+      allow update: if isSignedIn() && (isAdmin() || existing().petugasId == request.auth.uid);
+
+      // Delete: Admin only
+      allow delete: if isAdmin();
+    }
+
+    // 4. Admin markers
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if isSignedIn() && (
+        isAdmin() || 
+        (request.auth.uid == adminId && (
+          request.auth.token.email == 'sispaling26@sman11maros.sch.id' || 
+          request.auth.token.email == 'yusrilezril@gmail.com'
+        ))
+      );
+      allow delete: if isAdmin();
+    }
+  }
+}
